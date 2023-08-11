@@ -2,11 +2,12 @@ package org.example.service;
 
 
 import org.example.model.Book;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class MockBookService implements BookService {
     private List<Book> books;
     public MockBookService() {
@@ -24,7 +25,6 @@ public class MockBookService implements BookService {
         return books;
     }
 
-    @Override
     public Optional<Book> get(Long id) {
         return books.stream().filter(book -> book.getId().equals(id)).findFirst();
     }
@@ -43,6 +43,9 @@ public class MockBookService implements BookService {
 
     @Override
     public void update(Book book) {
-
+        if(get(book.getId()).isPresent()) {
+            int indexOf = books.indexOf(get(book.getId()).get());
+            books.set(indexOf,book);
+        }
     }
 }
