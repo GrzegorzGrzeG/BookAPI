@@ -40,9 +40,14 @@ public class BookController {
         });
     }
 
-    @PutMapping("/{id}")
-    public Book put(@PathVariable Long id) {
-        return mockBookService.update();
+    @PutMapping()
+    public void put(@RequestBody Book book) {
+        mockBookService.update(book);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        mockBookService.delete(id);
     }
 
 }
