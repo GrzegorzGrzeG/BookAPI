@@ -9,9 +9,9 @@ import org.example.model.Book;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-
+@Deprecated
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/deprecated/books")
 public class BookController {
 
     private MockBookService mockBookService;
@@ -45,7 +45,7 @@ public class BookController {
         mockBookService.update(book);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Long id) {
         mockBookService.delete(id);
     }
